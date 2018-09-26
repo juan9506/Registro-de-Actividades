@@ -1,4 +1,4 @@
-package co.udea.regactividades.service.impl;
+package co.udea.regactividades.api.service.impl;
 
 import java.util.List;
 
