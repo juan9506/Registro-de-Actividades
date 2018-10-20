@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -109,5 +110,17 @@ public class RegActividadesController {
 	public ResponseEntity<List<Proceso>> getProcesos(){
 		log.debug("REST request listar todos los procesos");
 		return ResponseEntity.ok(servicio.getProcesos());
+	}
+
+
+	@GetMapping("listarGrupos/{id}")
+	@ApiOperation(value = "Buscar grupos por id especifica", response = Page.class)
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Los grupos fueron buscadas", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
+	public ResponseEntity<List<Grupo>> getGruposByDocente(@PathVariable("id") String id){
+		log.debug("REST request listar todos los procesos");
+		return ResponseEntity.ok(servicio.getGruposByDocente(id));
 	}
 }

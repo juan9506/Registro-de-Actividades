@@ -18,17 +18,17 @@ public class Semestre implements Serializable{
 	@Id
 	private int id;
 	private int periodo;
-	private boolean activo;
+	private String estado;
 	
 	public Semestre() {
 		super();
 	}
 	
-	public Semestre(int id, int periodo, boolean activo) {
+	public Semestre(int id, int periodo, String estado) {
 		super();
 		this.id = id;
 		this.periodo = periodo;
-		this.activo = activo;
+		this.estado = estado;
 	}
 	
 	public int getId() {
@@ -43,10 +43,10 @@ public class Semestre implements Serializable{
 	public void setPeriodo(int periodo) {
 		this.periodo = periodo;
 	}
-	public boolean isActivo() {
-		return activo;
+	public String getEstado() {
+		return this.estado;
 	}
-	public void setActivo(boolean activo) {
-		this.activo = activo;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 }

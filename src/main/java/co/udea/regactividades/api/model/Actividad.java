@@ -22,23 +22,25 @@ public class Actividad {
     @JoinColumn(name = "grupo", referencedColumnName = "id")
 	private Grupo grupo;
 	private String nombre;
-	private Date fecha;
+	private Date fecha_creacion;
+	private Date fecha_culminacion;
 	private String descripcion;
-	private boolean completada;
+	private String estado;
 	private int horas_empleadas;
 	
 	public Actividad() {
 		super();
 	}
 	
-	public Actividad(int id, Grupo grupo, String nombre, Date fecha, String descripcion, boolean completada, int horas_empleadas) {
+	public Actividad(int id, Grupo grupo, String nombre, Date fecha_creacion, Date fecha_culminacion, String descripcion, String estado, int horas_empleadas) {
 		super();
 		this.id = id;
 		this.grupo = grupo;
 		this.nombre = nombre;
-		this.fecha = fecha;
+		this.fecha_creacion = fecha_creacion;
+		this.fecha_culminacion = fecha_culminacion;
 		this.descripcion = descripcion;
-		this.completada = completada;
+		this.estado = estado;
 		this.horas_empleadas = horas_empleadas;
 	}
 	
@@ -60,11 +62,17 @@ public class Actividad {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFecha() {
-		return fecha;
+	public Date getFecha_creacion() {
+		return fecha_creacion;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFecha_creacion(Date fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
+	}
+	public Date getFecha_culminacion() {
+		return fecha_culminacion;
+	}
+	public void setFecha_culminacion(Date fecha_culminacion) {
+		this.fecha_culminacion = fecha_culminacion;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -72,11 +80,11 @@ public class Actividad {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public boolean isCompletada() {
-		return completada;
+	public String getEstado() {
+		return this.estado;
 	}
-	public void setCompletada(boolean completada) {
-		this.completada = completada;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	public int getHoras_empleadas() {
 		return horas_empleadas;

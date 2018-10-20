@@ -18,4 +18,5 @@ public interface RegActividadesService {
 	public List<Actividad> getActividades();
 	public List<Reporte> getReportes();
 	public List<Proceso> getProcesos();
+	public List<Grupo> getGruposByDocente(String idProfesor);
 }

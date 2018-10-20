@@ -1,11 +1,14 @@
 package co.udea.regactividades.api.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import co.udea.regactividades.api.exception.DataNotFoundException;
 import co.udea.regactividades.api.model.Actividad;
 import co.udea.regactividades.api.model.Curso;
 import co.udea.regactividades.api.model.Grupo;
@@ -34,6 +37,7 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 	private ActividadRepository actividadRepository;
 	private ReporteRepository reporteRepository;
 	private ProcesoRepository procesoRepository;
+	private Messages messages;	
 	
 	public RegActividadesServiceImpl(RegActividadesRepository repositorio, SemestreRepository semestreRepository, CursoRepository cursoRepository, GrupoRepository grupoRepository, Messages messages,
 			ActividadRepository actividadRepository, ReporteRepository reporteRepository, ProcesoRepository procesoRepository) {
@@ -44,6 +48,7 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 		this.actividadRepository = actividadRepository;
 		this.reporteRepository = reporteRepository;
 		this.procesoRepository = procesoRepository;
+		this.messages = messages;
 	}
 	
 	@Override
@@ -86,6 +91,17 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 	public List<Proceso> getProcesos() {
 		List<Proceso> procesos = procesoRepository.findAll();
 		return procesos;
+	}
+
+	@Override
+	public List<Grupo> getGruposByDocente(String idProfesor) {
+		List<Grupo> grupos = new ArrayList<Grupo>();
+		for(Grupo grupo: grupoRepository.findAll()) {
+			if(grupo.getDocente().getId() == Integer.parseInt(idProfesor) && grupo.getCurso().getSemestre().getEstado().equals("Activo")) {
+				grupos.add(grupo);
+			}
+		}
+		return grupos;
 	}
 
 }
