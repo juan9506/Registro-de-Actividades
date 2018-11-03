@@ -22,8 +22,8 @@ public class Actividad {
     @JoinColumn(name = "grupo", referencedColumnName = "id")
 	private Grupo grupo;
 	private String nombre;
-	private Date fecha_creacion;
-	private Date fecha_culminacion;
+	private Date fechaCreacion;
+	private Date fechaFin;
 	private String descripcion;
 	private String estado;
 	private int horas_empleadas;
@@ -37,8 +37,8 @@ public class Actividad {
 		this.id = id;
 		this.grupo = grupo;
 		this.nombre = nombre;
-		this.fecha_creacion = fecha_creacion;
-		this.fecha_culminacion = fecha_culminacion;
+		this.fechaCreacion = fecha_creacion;
+		this.fechaFin = fecha_culminacion;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.horas_empleadas = horas_empleadas;
@@ -63,16 +63,16 @@ public class Actividad {
 		this.nombre = nombre;
 	}
 	public Date getFecha_creacion() {
-		return fecha_creacion;
+		return fechaCreacion;
 	}
 	public void setFecha_creacion(Date fecha_creacion) {
-		this.fecha_creacion = fecha_creacion;
+		this.fechaCreacion = fecha_creacion;
 	}
 	public Date getFecha_culminacion() {
-		return fecha_culminacion;
+		return fechaFin;
 	}
 	public void setFecha_culminacion(Date fecha_culminacion) {
-		this.fecha_culminacion = fecha_culminacion;
+		this.fechaFin = fecha_culminacion;
 	}
 	public String getDescripcion() {
 		return descripcion;

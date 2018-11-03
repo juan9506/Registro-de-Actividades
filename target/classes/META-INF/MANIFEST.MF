@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: registro-actividades
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Juan
+Built-By: laura
 Implementation-Vendor-Id: co.udea.regactividades
-Build-Jdk: 1.8.0_77
+Build-Jdk: 1.8.0_191
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/registro-actividades
 Created-By: Maven Integration for Eclipse

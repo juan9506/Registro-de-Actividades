@@ -77,7 +77,7 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 
 	@Override
 	public List<Actividad> getActividades() {
-		List<Actividad> actividades = actividadRepository.findAll();
+		List<Actividad> actividades = actividadRepository.findAllByOrderByFechaCreacionDesc();
 		return actividades;
 	}
 
@@ -96,12 +96,17 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 	@Override
 	public List<Grupo> getGruposByDocente(String idProfesor) {
 		List<Grupo> grupos = new ArrayList<Grupo>();
-		for(Grupo grupo: grupoRepository.findAll()) {
-			if(grupo.getDocente().getId() == Integer.parseInt(idProfesor) && grupo.getCurso().getSemestre().getEstado().equals("Activo")) {
+		for(Grupo grupo: grupoRepository.findAllByDocenteId(Integer.parseInt(idProfesor))) {
+			if(grupo.getCurso().getSemestre().getEstado().equals("Activo")) {
 				grupos.add(grupo);
 			}
 		}
 		return grupos;
+	}
+
+	@Override
+	public void eliminarActividad(int id) {
+		actividadRepository.deleteById(id);
 	}
 
 }
