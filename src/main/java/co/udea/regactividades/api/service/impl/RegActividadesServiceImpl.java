@@ -1,12 +1,14 @@
 package co.udea.regactividades.api.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.udea.regactividades.api.exception.DataNotFoundException;
 import co.udea.regactividades.api.model.Actividad;
@@ -104,9 +106,28 @@ public class RegActividadesServiceImpl implements RegActividadesService {
 		return grupos;
 	}
 
+	@Transactional
 	@Override
 	public void eliminarActividad(int id) {
-		actividadRepository.deleteById(id);
+		actividadRepository.eliminarActividad(id);
+	}
+
+	@Transactional
+	@Override
+	public void actualizarActividad(String nuevoNombre, int id, String descripcion, String estado, int horas, String culminacion, String tipo) {
+		actividadRepository.actualizarActividad(nuevoNombre, id, descripcion, estado, horas, culminacion, tipo);
+	}
+
+	@Transactional
+	@Override
+	public void agregarActividad(int id, Grupo grupo, String nombre, Date creacion, String culminacion, String descripcion,
+			String estado, int horas, String tipo) {
+		actividadRepository.agregarActividad(id, grupo, nombre, creacion, culminacion, descripcion, estado, horas, tipo);
+	}
+
+	@Override
+	public Grupo getGrupoById(int id) {
+		return grupoRepository.findGrupoById(id);
 	}
 
 }

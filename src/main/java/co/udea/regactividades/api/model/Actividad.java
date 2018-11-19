@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,22 +19,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Actividad {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo", referencedColumnName = "id")
 	private Grupo grupo;
 	private String nombre;
 	private Date fechaCreacion;
-	private Date fechaFin;
+	private String fechaFin;
 	private String descripcion;
 	private String estado;
 	private int horas_empleadas;
+	private String tipo;
 	
 	public Actividad() {
 		super();
 	}
 	
-	public Actividad(int id, Grupo grupo, String nombre, Date fecha_creacion, Date fecha_culminacion, String descripcion, String estado, int horas_empleadas) {
+	public Actividad(int id, Grupo grupo, String nombre, Date fecha_creacion, String fecha_culminacion, String descripcion, String estado, int horas_empleadas, String tipo) {
 		super();
 		this.id = id;
 		this.grupo = grupo;
@@ -42,6 +46,7 @@ public class Actividad {
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.horas_empleadas = horas_empleadas;
+		this.tipo = tipo;
 	}
 	
 	public int getId() {
@@ -68,10 +73,10 @@ public class Actividad {
 	public void setFecha_creacion(Date fecha_creacion) {
 		this.fechaCreacion = fecha_creacion;
 	}
-	public Date getFecha_culminacion() {
+	public String getFecha_culminacion() {
 		return fechaFin;
 	}
-	public void setFecha_culminacion(Date fecha_culminacion) {
+	public void setFecha_culminacion(String fecha_culminacion) {
 		this.fechaFin = fecha_culminacion;
 	}
 	public String getDescripcion() {
@@ -91,5 +96,11 @@ public class Actividad {
 	}
 	public void setHoras_empleadas(int horas_empleadas) {
 		this.horas_empleadas = horas_empleadas;
+	}
+	public String getTipo(){
+		return this.tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

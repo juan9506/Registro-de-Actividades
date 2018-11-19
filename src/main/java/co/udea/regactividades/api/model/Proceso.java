@@ -1,5 +1,6 @@
 package co.udea.regactividades.api.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Proceso {
 	@JoinColumn(name = "reporte", referencedColumnName = "id")
 	private Reporte reporte;
 	private int tiempo_empleado;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "actividad", referencedColumnName = "id")
 	private Actividad actividad;
 	private boolean completado;

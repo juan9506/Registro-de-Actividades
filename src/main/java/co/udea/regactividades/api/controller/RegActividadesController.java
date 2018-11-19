@@ -1,15 +1,20 @@
 package co.udea.regactividades.api.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -125,7 +130,7 @@ public class RegActividadesController {
 		return ResponseEntity.ok(servicio.getGruposByDocente(id));
 	}
 	
-	@GetMapping("eliminarActividad/{id}")
+	@DeleteMapping("eliminarActividad/{id}")
 	@ApiOperation(value = "Eliminar actividad por su Id", response = Page.class)
 	@ApiResponses(value = {
             @ApiResponse(code = 200, message = "Los grupos fueron buscadas", response = Page.class),
@@ -133,5 +138,31 @@ public class RegActividadesController {
             @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
 	public void eliminarActividad(@PathVariable("id") String id){
 		servicio.eliminarActividad(Integer.parseInt(id));
+	}
+
+	@PutMapping("actualizarActividad/{nuevoNombre}/{id}/{descripcion}/{estado}/{horas}/{culminacion}/{tipo}")
+	@ApiOperation(value = "Actualizar actividad por su Id", response = Page.class)
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Actividad actualizada correctamente", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
+	public void actualizarActividad(@PathVariable("nuevoNombre") String nuevoNombre, @PathVariable("id") String id,
+			@PathVariable("descripcion") String descripcion, @PathVariable("estado") String estado, @PathVariable("horas") int horas,
+			@PathVariable("culminacion") String culminacion, @PathVariable("tipo") String tipo){
+		servicio.actualizarActividad(nuevoNombre, Integer.parseInt(id), descripcion, estado, horas, culminacion, tipo);
+	}
+
+	@PostMapping("agregarActividad/{id}/{idGrupo}/{nombre}/{descripcion}/{estado}/{horas}/{tipo}")
+	@ApiOperation(value = "Agregar actividad", response = Page.class)
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Actividad agregada correctamente", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
+	public void agregarActividad(
+			@PathVariable("id") int id, @PathVariable("idGrupo") int idGrupo, @PathVariable("nombre") String nombre,
+			@PathVariable("descripcion") String descripcion, @PathVariable("estado") String estado,
+			@PathVariable("horas") int horas, @PathVariable("tipo") String tipo){
+		Grupo grupo = servicio.getGrupoById(idGrupo);
+		servicio.agregarActividad(id, grupo, nombre, new Date(), "Incompleta", descripcion, estado, horas, tipo);
 	}
 }

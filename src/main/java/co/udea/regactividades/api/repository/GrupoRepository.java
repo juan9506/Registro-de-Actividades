@@ -9,4 +9,5 @@ import co.udea.regactividades.api.model.Grupo;
 public interface GrupoRepository extends JpaRepository<Grupo, String> {
 
 	List<Grupo> findAllByDocenteId(int id);
+	Grupo findGrupoById(int id);
 }
