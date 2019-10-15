@@ -19,7 +19,7 @@ node {
    checkout scm
    
    // -- Compilando
-   echo 'Compilando aplicación'
+   echo 'Compilando aplicacion'
    bat 'mvn clean compile'
    
    // ------------------------------------
