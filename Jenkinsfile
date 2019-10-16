@@ -31,7 +31,7 @@ node {
   stage 'Test'
    echo 'Ejecutando tests'
    try{
-      bat 'mvn verify'
+      bat 'mvn verify -Psurefire'
    }catch(err) {
       if (currentBuild.result == 'UNSTABLE')
          currentBuild.result = 'FAILURE'
