@@ -31,6 +31,10 @@ node {
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
    bat 'mvn install -Dmaven.test.skip=true'
+   
+   stage 'Metricas'
+   echo 'Corriendo métricas'
+   bat 'mvn sonar:sonar'
 
    stage 'Archivar'
    echo 'Archiva el paquete el paquete generado en Jenkins'
