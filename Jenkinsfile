@@ -18,7 +18,7 @@ node {
 
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
-   bat 'mvn clean install -Dmaven.test.skip=true'
+   bat 'mvn install -Dmaven.test.skip=true'
    
   stage 'Test'
    echo 'Ejecutando tests'
