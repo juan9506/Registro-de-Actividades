@@ -16,17 +16,17 @@ node {
    echo 'Compilando aplicacion..'
    bat 'mvn clean compile'
 
-  stage 'Test'
-   echo 'Ejecutando tests'
-   try{
-      bat 'mvn verify'
-      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-   }catch(err) {
-      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-      if (currentBuild.result == 'UNSTABLE')
-         currentBuild.result = 'FAILURE'
-      throw err
-   }
+  //stage 'Test'
+   //echo 'Ejecutando tests'
+   //try{
+     // bat 'mvn verify'
+     // step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+   //}catch(err) {
+      //step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+      //if (currentBuild.result == 'UNSTABLE')
+    //     currentBuild.result = 'FAILURE'
+  //    throw err
+//   }
 
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
