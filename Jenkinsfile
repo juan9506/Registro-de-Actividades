@@ -33,6 +33,10 @@ node {
    stage 'Metricas'
    echo 'Corriendo métricas'
    bat 'mvn sonar:sonar'
+   
+   //stage 'Subir a Archiva'
+   //echo 'Subiendo a apache Archiva'
+   //bat 'mvn deploy'
 
    stage 'Archivar'
    echo 'Archiva el paquete generado en Jenkins'
