@@ -35,7 +35,7 @@ node {
    bat 'mvn sonar:sonar'
    
    stage 'Subir a Archiva'
-   echo 'Subiendo a apache Archiva'
+   echo 'Subiendo a Apache Archiva'
    bat 'mvn deploy'
 
    stage 'Archivar'
