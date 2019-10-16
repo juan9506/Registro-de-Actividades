@@ -13,21 +13,13 @@ node {
    bat 'del -rf * /Q'
    checkout scm
   
-   echo 'Compilando aplicacion..'
+   echo 'Compilando aplicacion...'
    bat 'mvn clean compile'
 
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
-   bat 'mvn install -Dmaven.test.skip=true'
+   bat 'mvn clean install -Dmaven.test.skip=true'
    
-   stage 'Metricas'
-   echo 'Corriendo métricas'
-   bat 'mvn sonar:sonar'
-
-   stage 'Archivar'
-   echo 'Archiva el paquete el paquete generado en Jenkins'
-   step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
-
   stage 'Test'
    echo 'Ejecutando tests'
    try{
@@ -37,4 +29,12 @@ node {
          currentBuild.result = 'FAILURE'
       throw err
    }
+   
+   stage 'Metricas'
+   echo 'Corriendo métricas'
+   bat 'mvn sonar:sonar'
+
+   stage 'Archivar'
+   echo 'Archiva el paquete el paquete generado en Jenkins'
+   step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
 }
