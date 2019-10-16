@@ -23,7 +23,7 @@ node {
    bat 'mvn clean compile'
    
    // ------------------------------------
-   // -- ETAPA: Test
+   // - ETAPA: Test
    // ------------------------------------
   /* stage 'Test'
    echo 'Ejecutando tests'
