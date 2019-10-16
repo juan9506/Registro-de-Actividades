@@ -21,7 +21,7 @@ node {
    bat 'mvn install -Dmaven.test.skip=true'
    
   stage 'Test'
-   echo 'Ejecutando tests'
+   echo 'Ejecutando tests...'
    try{
       bat 'mvn verify -Psurefire'
    }catch(err) {
