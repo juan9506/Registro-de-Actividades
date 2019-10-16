@@ -5,6 +5,42 @@
   <artifactId>registro-actividades</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+	
+<distributionManagement>
+    <repository>
+      <id>registro-actividades-repo</id>
+      <url>http://localhost:8082/repository/registro-actividades-repo/</url>
+    </repository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>registro-actividades-repo</id>
+      <name>registro-actividades</name>
+      <url>http://localhost:8082/repository/registro-actividades-repo/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>registro-actividades-repo</id>
+      <name>registro-actividades</name>
+      <url>http://localhost:8082/repository/registro-actividades-repo/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+	
+	
   <name>registro-actividades</name>
 	<description>Servicios para el registro de actividades</description>
 
